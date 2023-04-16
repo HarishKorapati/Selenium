@@ -15,7 +15,7 @@ public class drivers {
 	
 	WebDriver driver;
 	Properties prop;
-		
+	public static ThreadLocal<WebDriver> tl=new ThreadLocal<WebDriver>();
 	
 	public WebDriver init_driver() {
 //		String browser="edge";
@@ -32,19 +32,24 @@ public class drivers {
 		}else {
 			System.out.println("Browser passed not found - "+browser);
 		}
+		tl.set(driver);
 		return driver;
 	}
 	
 	public Properties init_prop() {
 		prop = new Properties();
 		try {
-			FileInputStream fis=new FileInputStream("C:\\Users\\heman\\eclipse-workspace\\practise\\src\\test\\resources\\config.properties");
+			FileInputStream fis=new FileInputStream(".\\src\\test\\resources\\config.properties");
 			prop.load(fis);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return prop;
+	}
+	
+	public static synchronized WebDriver getDriver(){
+		return tl.get();
 	}
 
 

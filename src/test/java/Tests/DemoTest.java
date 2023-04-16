@@ -8,6 +8,6 @@ public class DemoTest extends BaseTest{
 	@Test
 	public void executionStart() {
 		System.out.println("Execution Started - Harish");
-		getDriver().get("www.google.com");
+		getDriver().get("https://eclipseide.org/");
 	}
 }

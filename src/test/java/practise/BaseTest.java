@@ -8,8 +8,8 @@ import org.testng.annotations.BeforeTest;
 
 import Driverfactory.drivers;
 
-public class BaseTest {
-WebDriver driver;
+public class BaseTest extends drivers{
+	WebDriver driver;
 Properties prop;
 drivers df;
 	
@@ -17,17 +17,12 @@ drivers df;
 	public void setUp() {
 		 df = new drivers();
 		 prop = df.init_prop();
+		 driver= df.init_driver();
 		
 	}
 	
 	@AfterTest
 	public void tearDown() {
-		driver.quit();
+		getDriver().quit();
 	}
-	
-	public WebDriver getDriver() {
-		return driver;
-	}
-	
-	
 }
